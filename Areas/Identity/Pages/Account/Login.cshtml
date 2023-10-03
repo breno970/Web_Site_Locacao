@@ -1,0 +1,142 @@
+﻿@page
+@model LoginModel
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <main id="container">
+
+
+        <section>
+
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
+                                article
+                                about setting up this ASP.NET application to support logging in via external services
+                            </a>.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="Logins" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" id="login_form" name="provider" value="@provider.Name" class="btn-secondary" title="Autentique usando a sua conta @provider.DisplayName."></button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+
+
+        <form id="login_form" method="post">
+
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>Login</h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+
+            </div>
+            <!-- SOCIAL MEDIA LINKS -->
+            <div id="social_media">
+                <!-- FACEBOOK -->
+                <a href="#">
+                    <img src="~/imagens/facebook.png" alt="">
+                </a>
+
+                <!-- GOOGLE -->
+                <a href="#">
+                    <img src="~/imagens/google.png" alt="Google logo">
+                </a>
+
+            </div>
+
+
+            <!-- INPUTS -->
+            <div id="inputs">
+
+                <div class="input-box">
+                    <label for="Email"> </label>E-mail
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i><input asp-for="Input.Email">
+
+                    </div>
+
+
+                </div>
+
+                <div class="input-box">
+                    <label for="password"> </label>Senha
+                    <div class="input-field">
+                        <i class="fa-solid fa-key"></i><input asp-for="Input.Password">
+
+                    </div>
+
+                </div>
+
+                <div class="input-box">
+                    <label asp-for="Input.RememberMe" class="form-label">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- LOGIN BUTTON -->
+            <button type="submit" id="login_button">
+                Entrar
+            </button>
+
+
+            <div class="link">
+
+
+
+                <p>
+                    <a id="forgot-password" class="link" asp-page="./ForgotPassword">Esqueceu sua senha?</a>
+                </p>
+                <p>
+                    <a asp-page="./Register" class="link" asp-route-returnUrl="@Model.ReturnUrl">Registrar como um novo usuário</a>
+                </p>
+                <p>
+                    <a id="resend-confirmation" class="link" asp-page="./ResendEmailConfirmation">Reenviar email de confirmação</a>
+                </p>
+            </div>
+
+
+        </form>
+    </main>
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="~/js/cadastro.js"></script>
+
+
+
+
+
+
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

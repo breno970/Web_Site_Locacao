@@ -1,0 +1,69 @@
+﻿@model aluguel.Models.Item
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <main id="container">
+
+        <form id="login_form" method="post">
+
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>Detalhes do Item</h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label asp-for="nmitem" class="control-label"><b>Nome</b></label>
+                    @Html.DisplayFor(model => model.nmitem)
+               
+                    <label asp-for="dsitem" class="control-label"><b>Descrição</b></label>
+                    @Html.DisplayFor(model => model.dsitem)
+              
+                    <label asp-for="dtcriacao" class="control-label"><b>Data de Criação</b></label>
+                    @Html.DisplayFor(model => model.dtcriacao)
+               
+                    <label asp-for="snativo" class="control-label"><b>Está Ativo?</b></label>
+                    @Html.DisplayFor(model => model.snativo)
+                </div>
+
+                @*
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.imagem)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.imagem)
+                </dd> *@
+                @* <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.iduser)
+                </dt>
+                <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.iduser)
+                </dd> *@
+            </div>
+            <div>
+
+                <a asp-action="Editar |" asp-route-id="@Model?.id">Editar |</a>
+                <a asp-action="Index">Voltar para a lista</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
+

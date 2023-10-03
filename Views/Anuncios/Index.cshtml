@@ -1,0 +1,79 @@
+﻿@model IEnumerable<aluguel.Models.Anuncio>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Meus Anúncios</h1>
+
+<p>
+    <a asp-action="Create">Criar novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vlitem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.diasAluguel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.item.imagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.contato)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.item.nmitem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vlitem)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.diasAluguel)
+                </td>
+                <td>
+                    <img src="~/imagens/@item.item.imagem" class="border" width="200" height="200" asp-append-version="true">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.contato)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

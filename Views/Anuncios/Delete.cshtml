@@ -1,0 +1,43 @@
+﻿@model aluguel.Models.Anuncio
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <main id="container">
+
+        <form id="login_form" method="post" enctype="multipart/form-data">
+
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>
+                    Tem certeza que deseja<br>
+                    excluir esse Anúncio?
+                </h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+
+            </div>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="id" />
+                <input type="submit" value="Excluir" class="btn btn-danger" />
+                <a asp-action="Index">Voltar para lista</a>
+            </form>
+
+        </form>
+    </main>
+</body>
+</html>

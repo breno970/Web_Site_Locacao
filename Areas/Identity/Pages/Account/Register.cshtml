@@ -1,0 +1,115 @@
+﻿@page
+@model RegisterModel
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <main id="container">
+
+        <form id="login_form" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div>
+                <p>
+                    @foreach (var provider in Model.ExternalLogins!)
+                    {
+                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    }
+                </p>
+            </div>
+        </form>
+
+        <form id="login_form" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>Cadastro</h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+            </div>
+            <!-- SOCIAL MEDIA LINKS -->
+            <div id="social_media">
+                <!-- FACEBOOK -->
+                <a href="#">
+                    <img src="~/imagens/facebook.png" alt="">
+                </a>
+
+                <!-- GOOGLE -->
+                <a href="#">
+                    <img src="~/imagens/google.png" alt="Google logo">
+                </a>
+            </div>
+
+
+            <div class="input-box">
+                <label for="Nome"> </label> Nome
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i><input asp-for="Input.FirstName">
+                    <span asp-validation-for="Input.FirstName" class="text"></span>
+                </div>
+            </div>
+
+
+            <div class="input-box">
+                <label for="Nome"> </label> Sobrenome
+                <div class="input-field">
+                    <i class="fa-solid fa-user"></i><input asp-for="Input.LastName">
+                    <span asp-validation-for="Input.LastName" class="text"></span>
+                </div>
+
+            </div>
+
+            <div class="input-box">
+                <label for="Email"> </label>E-mail
+                <div class="input-field">
+                    <i class="fa-solid fa-envelope"></i><input asp-for="Input.Email">
+                    <span asp-validation-for="Input.Email" class="text"></span>
+                </div>
+            </div>
+
+
+            <div class="input-box">
+                <label for="password"> </label>Senha
+                <div class="input-field">
+                    <i class="fa-solid fa-key"></i><input asp-for="Input.Password">
+                    <span asp-validation-for="Input.Password" class="password"></span>
+                </div>
+
+            </div>
+
+
+            <div class="input-box">
+                <label for="password2"> </label>Repita sua senha
+                <div class="input-field">
+                    <i class="fa-solid fa-key"></i><input asp-for="Input.ConfirmPassword">
+                    <span asp-validation-for="Input.ConfirmPassword" class="text"></span>
+                </div>
+            </div>
+
+            <!-- REGISTRAR BUTTON -->
+            <button type="submit" id="login_button" href=".. /Areas/Identity/Pages/Account/RegisterConfirmation.cshtml.cs">
+
+                Cadastrar
+            </button>
+
+        </form>
+    </main>
+
+
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="~/js/cadastro.js"></script>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

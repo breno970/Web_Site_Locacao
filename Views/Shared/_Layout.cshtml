@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using aluguel.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="shortcut icon" href="/imagens/ico.ico" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RentAll</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/cadastro.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/voltartopo.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+       
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+
+
+    <header>
+        
+        <nav>
+            <a class="logo" href="/">Rent All</a>
+            <div class="mobile-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <ul class="nav-list">
+                
+                <li class="nav">
+                    <a class="nav-link text-white-50" asp-area="" asp-controller="Home" asp-action="Index">Menu Principal</a>
+                </li>
+                <li class="nav">
+                    <a class="nav-link text-white-50" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre nós</a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {}
+                else
+                {
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Entrar</a>
+                </li>    
+                }
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <li class="nav">
+                        <a class="nav-link text-white-50" asp-area="" asp-controller="Items" asp-action="Index">Itens</a>
+                    </li>
+                    <li class="nav">
+                        <a class="nav-link text-white-50" asp-area="" asp-controller="Anuncios" asp-action="Index">Anúncios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Olá @User.GetFirstName()!</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit">Sair</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+    </div>
+    <script type="text/javascript" src="~/js/cadastro.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/mobile-navbar.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

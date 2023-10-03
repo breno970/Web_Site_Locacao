@@ -1,0 +1,56 @@
+img {
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+    order: 1;
+    max-width: 300px;
+    max-height: 300px;
+    min-height: 300px;
+    min-width: 300px;
+    width: auto;
+    height: auto;
+    padding: 20px;
+}
+
+.u-text-placeholder {
+    background-color: #a2a8b1;
+    display: inline-block;
+    height: 9px;
+}
+
+.l-cards {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    justify-items: center;
+    padding: 30px;
+}
+
+.c-card {
+    background-color: #808080;
+    border-radius: .6rem;
+    display: inline-flex;
+    flex-direction: column;
+    height: fit-content;
+    width: 300px;
+    align-items: center;
+    background-color: #b5b9c1;
+    border-top-left-radius: .6rem;
+    border-top-right-radius: .6rem;
+    display: flex;
+    flex: 5;
+    justify-content: center;
+    overflow: hidden;
+}
+
+&__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-around;
+    padding: 15px;
+}
+

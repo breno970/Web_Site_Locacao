@@ -1,0 +1,48 @@
+﻿@model IEnumerable<aluguel.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="~/css/imgcad.css">
+    <link rel="stylesheet" href="~/css/estrelas.css">
+    <link rel="stylesheet" href="~/css/rodape.css" asp-append-version="true" />
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+
+    <div class="l-cards" width:50px>
+
+        @foreach (var item in Model)
+        {
+            <div class="c-card" >
+                <div class="c-card__image">
+                <img src="~/imagens/@item.imagem" class="border" width="200" height="200" asp-append-version="true">
+                </div>
+                <h1>@Html.DisplayFor(modelItem => item.nmitem)</h1>
+
+                <p>@Html.DisplayFor(modelItem => item.dsitem)</p>
+
+                <b>@Html.DisplayFor(modelItem => item.snativo)</b>
+               
+                <a asp-action="Edit" asp-route-id="@item.id">Editar</a> 
+                <a asp-action="Details" asp-route-id="@item.id">Detalhes</a> 
+                <a asp-action="Delete" asp-route-id="@item.id">Excluir</a>
+            </div>
+        }
+    
+
+    </div>
+
+</body>
+</html>

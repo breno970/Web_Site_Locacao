@@ -1,0 +1,53 @@
+﻿@page
+@model ExternalLoginModel
+@{
+    ViewData["Title"] = "Registrar";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2 id="external-login-title">Associe com sua conta @Model.ProviderDisplayName .</h2>
+<hr />
+
+<p id="external-login-description" class="text-info">
+    Você autenticou com sucesso utilizando o <strong>@Model.ProviderDisplayName</strong>.
+    Por favor, digite seu nome e sobrenome para finalizar o registro e poder entrar.
+</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" type="hidden" class="form-control" autocomplete="email"/>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FirstName" class="form-control" placeholder="Nome." />
+                <label asp-for="Input.FirstName" class="form-label"></label>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="LastName" placeholder="Sobrenome." />
+                <label asp-for="Input.LastName" class="form-label"></label>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div>
+            <input type="checkbox" class="checkbox_class" <a>Ao clicar aqui, você aceita nossa Política de Privacidade e Termos de Serviço.</a>
+            <p></p>
+            <button type="submit" disabled id="registro" class="w-100 btn btn-lg btn-primary">Registrar</button>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript">
+        $('.checkbox_class').change(function () {
+        if ($('.checkbox_class:checked').length > 0) {
+            $('#registro').prop('disabled', false);
+        } else {
+            $('#registro').prop('disabled', true);
+        }
+    });    
+    </script>
+}

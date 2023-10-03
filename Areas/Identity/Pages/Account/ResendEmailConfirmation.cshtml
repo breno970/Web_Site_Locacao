@@ -1,0 +1,56 @@
+﻿@page
+@model ResendEmailConfirmationModel
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <main id="container">
+        <form id="login_form" method="post">
+
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>Reenviar email de confirmação</h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+            </div>
+
+            <!-- FORM HEADER -->
+
+            <h1>@ViewData["Title"]</h1>
+            <h2>Insira seu email.</h2>
+
+            <div class="input-box">
+                <form method="post">
+
+                    <div class="input-field">
+
+                        <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="Exemplo@gmail.com" />
+
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <button type="submit" id="login_button" class="w-50 btn btn-lg btn-primary">Reenviar</button>
+                    <div asp-validation-summary="All" class="form-control" role="alert"></div>
+                </form>
+            </div>
+
+
+            @section Scripts {
+                <partial name="_ValidationScriptsPartial" />
+            }
+        </form>
+    </main>
+</body>
+</html>
+
+<!-- JAVASCRIPT -->
+<script type="text/javascript" src="~/js/cadastro.js"></script>

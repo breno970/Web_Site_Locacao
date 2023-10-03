@@ -1,0 +1,79 @@
+﻿@model aluguel.Models.Anuncio
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/f9a4013b2c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/css/site.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Login Dark/Light Mode</title>
+</head>
+<body>
+    <main id="container">
+
+        <form id="login_form" method="post" enctype="multipart/form-data">
+
+            <!-- FORM HEADER -->
+            <div id="form_header">
+                <h1>Tela de Edição</h1>
+                <i id="mode_icon" class="fa-solid fa-moon"></i>
+
+            </div>
+
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="id" />
+
+                <div class="form-group">
+                    <label asp-for="vlitem" class="control-label">Valor</label>
+                    <input asp-for="vlitem" class="form-control" />
+                    <span asp-validation-for="vlitem" class="text-danger"></span>
+                
+                    <label asp-for="diasAluguel" class="control-label">Dias de Aluguel</label>
+                    <input asp-for="diasAluguel" class="form-control" />
+                    <span asp-validation-for="diasAluguel" class="text-danger"></span>
+                
+                    <input asp-for="iduser" type="hidden" value="@User.FindFirst(ClaimTypes.NameIdentifier).Value" class="form-control" />
+                    <span asp-validation-for="iduser" class="text-danger"></span>
+               
+                    <input asp-for="itemid" type="hidden" class="form-control" />
+                    <span asp-validation-for="itemid" class="text-danger"></span>
+              
+                    <label asp-for="estado" class="control-label">Estado</label>
+                    <input asp-for="estado" class="form-control" />
+                    <span asp-validation-for="estado" class="text-danger"></span>
+               
+                    <label asp-for="cidade" class="control-label">Cidade</label>
+                    <input asp-for="cidade" class="form-control" />
+                    <span asp-validation-for="cidade" class="text-danger"></span>
+               
+                    <label asp-for="bairro" class="control-label">Bairro</label>
+                    <input asp-for="bairro" class="form-control" />
+                    <span asp-validation-for="bairro" class="text-danger"></span>
+               
+                    <label asp-for="contato" class="control-label">Telefone</label>
+                    <input asp-for="contato" class="form-control" />
+                    <span asp-validation-for="contato" class="text-danger"></span>
+               
+                    <input type="submit" value="Salvar Alterações" class="btn btn-primary" />
+                    <a asp-action="Index">Voltar para a lista</a>
+                </div>
+            </form>
+            </form>
+    </main>
+</body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
